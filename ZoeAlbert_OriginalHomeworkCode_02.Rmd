@@ -1,0 +1,87 @@
+---
+title: "ZoeAlbert_OriginalHomeworkCode_02"
+author: "Zoe Albert"
+date: "9/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+###Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+###What is the probability that she will hear more than 8 calls during any given session?
+
+###What is the probability that she will hear no calls in a session?
+
+###What is the probability that she will hear exactly 3 calls in a session?
+
+###Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+###Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+###Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+
+``` {r}
+
+###What is the probability that she will hear more than 8 calls during any given session?
+
+?dpois
+
+### I will use the poisson distribution becuase I am assuming that each titi call is independent of one another.
+
+x<-8
+
+###I want to find the probability of x.  I am unsure if I should use 8 or 9. 
+
+l<-15
+
+### l is our parameter. It is a mean of 15. 
+
+1-ppois(q=x,lambda=l)
+
+### Rather than count from 9 to infinity, I am going to rely on the fact that we can use the compliment by subtracting by one. 
+```
+```{r}
+###What is the probability that she will hear no calls in a session?
+
+dpois(0,15)
+
+###This function will give me the probability of zero calls. 
+
+###I know I am supposed to use 15, but I am not sure why it matters to include it.
+```
+```{r}
+###What is the probability that she will hear exactly 3 calls in a session?
+
+dpois(3,15)
+
+###It would make sense if we did the same thing with zero calls, but replaced the zero with 3. 
+```
+```{r}
+###Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+```
