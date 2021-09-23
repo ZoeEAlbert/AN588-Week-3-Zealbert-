@@ -113,7 +113,7 @@ y<-rpois(104,15)
 
 ###I want to give the distribution above a name so that I can put it into a graph. 
 
-hist(y,xlim=c(0,30),xlab="Number of Calls",main="Call Monitoring Histogram",breaks=30)
+hist(y,xlim=c(0,30),xlab="Number of Calls",main="Call Histogram",breaks=30)
 
 ###I think that this graph would more closely resemble a bell curve if it was ideal.  But, I can still see evidence of the bell curve. 
 ```
