@@ -1,0 +1,89 @@
+---
+title: "ZoeAlbert_OriginalHomeworkCode_02"
+author: "Zoe Albert"
+date: "9/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+``` {r Probablity of 8 or more calls}
+
+###What is the probability that she will hear more than 8 calls during any given session?
+
+?dpois
+
+### I will use the poisson distribution because I am assuming that each titi call is independent of one another.
+
+x<-8
+
+###I want to find the probability of x.  I am unsure if I should use 8 or 9. 
+
+l<-15 
+
+### l is our parameter. It is a mean of 15. 
+
+1-ppois(q=x,lambda=l)
+
+### Rather than count from 9 to infinity, I am going to rely on the fact that we can use the compliment by subtracting by one. 
+```
+```{r Probability of no calls}
+###What is the probability that she will hear no calls in a session?
+
+dpois(0,15)
+
+###This function will give me the probability of zero calls. 
+```
+```{r Probability of 3 calls}
+###What is the probability that she will hear exactly 3 calls in a session?
+
+dpois(3,15)
+
+###It would make sense if we did the same thing with zero calls, but replaced the zero with 3. 
+```
+```{r Poisson 0 to 30} 
+###Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30. 
+
+x<-0:30 
+
+###X is the range which we are considering. 
+
+l=15
+
+###l is the parameter.
+
+barplot(dpois(x,l))
+
+###I want to create a bar plot that considers both X and l.
+
+```
+```{r 104 results}
+###Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+rpois(104,15)
+
+###I want this function to work kind of like a random number generation.  I will use rpois because I know it takes into account random numbers from a poisson distribution.
+
+```
+```{r histogram}
+###Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+y<-rpois(104,15)
+
+###I want to give the distribution above a name so that I can put it into a graph. 
+
+hist(y,xlim=c(0,30),xlab="Number of Calls",main="Call Histogram",breaks=30)
+
+###I think that this graph would more closely resemble a bell curve if it was ideal.  But, I can still see evidence of the bell curve. 
+```
+Challenges 
+###1 I had a hard time remembering some basic stats.  For instance, if I want to know the probablity of more than 8 calls, I didn't know if I should do 8 or 9.  I did 8, but I am still not sure if that is right. 
+###2  I didn't know if rpois would give me a different result every time I ran it.  I ran it several times and found out that it did. The problem was that I didn'r understand the statistics behind the function.
+###3 I still don't understand when and why to include 15. I think it is her best guess as to mean number of calls but if it isn't based on actual observations why do we include it. 
+###4 I don't know how to add color to a histogram.  And, once I do, I don't know where to find a list of the colors that I could chose from.
+###5 I feel as though I was using the same "pois" functions over and over again.  I don't know if there is an easier or better way to do this. 
