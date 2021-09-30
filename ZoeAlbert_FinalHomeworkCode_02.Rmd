@@ -33,7 +33,7 @@ l<-15
 ### Rather than count from 9 to infinity, I am going to rely on the fact that we can use the compliment by subtracting by one. 
 ```
 ```{r Probability of no calls}
-###What is the probability that she will hear no calls in a session?
+###What is the probability that she will hear no calls in a session? 
 
 dpois(0,15)
 
