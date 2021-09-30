@@ -1,0 +1,136 @@
+---
+title: "ZoeAlbert_OriginalHomeworkCode_02"
+author: "Zoe Albert"
+date: "9/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+_I would just take out the whole section here except the first chunk to clean it up -M_
+
+###Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+###What is the probability that she will hear more than 8 calls during any given session?
+
+###What is the probability that she will hear no calls in a session?
+
+###What is the probability that she will hear exactly 3 calls in a session?
+
+###Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+###Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+###Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+
+``` {r}
+
+###What is the probability that she will hear more than 8 calls during any given session?
+
+?dpois
+#I like the addition of the question command I also ran this lol just not in my chunk
+### I will use the poisson distribution because I am assuming that each titi call is independent of one another.
+
+x<-8
+
+###I want to find the probability of x.  I am unsure if I should use 8 or 9. 
+
+l<-15
+
+### l is our parameter. It is a mean of 15. 
+
+1-ppois(q=x,lambda=l)
+
+### Rather than count from 9 to infinity, I am going to rely on the fact that we can use the compliment by subtracting by one. 
+```
+_Smart to add the inverse by subtracting from one, I hadn't thought of that. I would also agree that in the wording it is suppose to be equal to or greater than 8. -M_
+```{r #example}
+#i would also label chunks to find them easier -M
+
+###What is the probability that she will hear no calls in a session?
+
+dpois(0,15)
+
+###This function will give me the probability of zero calls. 
+
+###I know I am supposed to use 15, but I am not sure why it matters to include it.
+
+#In this case we are taking 15 as the given mean (not just a hypothesis) so its being used to generate the data set
+```
+_I ran the same way! No  changes from me -M_
+```{r}
+###What is the probability that she will hear exactly 3 calls in a session?
+
+dpois(3,15)
+
+###It would make sense if we did the same thing with zero calls, but replaced the zero with 3. 
+```
+_Yep! I did the same -M_
+```{r}
+###Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+x<-0:30
+
+###X is the range which we are considering. 
+
+l=15
+
+###l is the parameter.
+
+barplot(dpois(x,l), col = "orange")
+
+#we chatted online but yeah there is a bunch of things you can add if you look at the arguments in the function like a spooky color!
+###I want to create a bar plot that considers both X and l.
+
+```
+_like I said take a look at some of the arguments in the function if you wanted to use axis labels and stuff but otherwise I like he barplot and it matches your data well! -M_
+```{r}
+###Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+rpois(104,15)
+
+###I want this function to work kind of like a random number generation.  I will use rpois because I know it takes into account random numbers from a poisson distribution.
+
+###Will the results be different every time I run the chunk?
+#Yes it does!
+```
+_I didn't do this in my code but prof. schmitt said `set.seed()` can hold the data from whatever run you choose for the future, like `set.seed(1)` keeps the first set you run.To my understanding that means you want to keep `1` `seed` for future use -M_
+```{r}
+###Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+y<-rpois(104,15)
+
+###I want to give the distribution above a name so that I can put it into a graph. 
+
+hist(y,xlim=c(0,30),xlab="Number of Calls",main="Call Histogram",breaks=30)
+
+###I think that this graph would more closely resemble a bell curve if it was ideal.  But, I can still see evidence of the bell curve. 
+```
+_I think that graph looks great! We talked about how its confusing what we are actually graphing though so I will bring it up in class -M_
+
+Challenges 
+###1 I had a hard time remembering some basic stats.  For instance, if I want to know the probablity of more than 8 calls, I didn't know if I should do 8 or 9.  I did 8, but I am still not sure if that is right. 
+
+_I am with you there, I defiantly think the questions are up for interpretation so just go with what makes sense and then weak the variables later -M_
+
+###2  I didn't know if rpois would give me a different result every time I ran it.  I ran it several times and found out that it did. The problem was that I didn'r understand the statistics behind the function.
+
+_Yeah we chatted about this and in the notes I talked about it, the 1set.seed` will hold your data but I'm not sure how. And it looks like you worked out the rpois meaning in some of the later chunks aas a random number generator essentially! -M_
+
+###3 I still don't understand when and why to include 15. I think it is her best guess as to mean number of calls but if it isn't based on actual observations why do we include it. 
+
+_Like earlier I would just go with 15 as the given mean as we understand it as a way to populate random data instead of going off no mean and essenially saying there could be anywhere from 1-30 calls without a mean number. In this case we just treat it like a given variable. -M_
+
+###4 I don't know how to add color to a histogram.  And, once I do, I don't know where to find a list of the colors that I could chose from.
+
+_For histograms and such you can include it as an argument `col = ""`. I am not sure how to get specific colors in terms of like hex code or rbg or whatever R uses for color but if you just give a "color" like "red" it will work on a basic level -M_
+
+###5 I feel as though I was using the same "pois" functions over and over again.  I don't know if there is an easier or better way to do this. 
+
+_I am with you on this one, I think that just comes with understanding the distribution of the given data but idk how to estimate the given data if we just have a mean and randomly generated data?? I would ask about this -M_
+
+## Peer Commentary
+
+- Amazing job! I'm glad we talked about this on Zoom, it really helped to work through the process with you. I think you have great notation in your code with only a couple of syntax addition from me to make your life easier. The function use was great and minimal, which helps make the code look and run better in my opinion. Hope to review your code again in the future! 
